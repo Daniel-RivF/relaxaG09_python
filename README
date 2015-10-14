@@ -1,1 +1,2 @@
 Este programa genera scans alrededor de la CoIn.
+works for g09 CASSCF single point gradient calculations (use FORCE keyword in g09 input).
