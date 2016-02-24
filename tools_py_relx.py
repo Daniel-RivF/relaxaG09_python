@@ -95,9 +95,9 @@ def writer(Zs,xyzs, filename2, route, charg, mult):
     chkname = os.path.splitext(filename2)[0]
     with open(filename2, 'w') as f:
         for geom in info:
-           f.write('%schk = %s \n' %(p,chkname) )  
-           f.write('%snproc = 4\n' % p)
-           f.write('%smem = 4000Mb \n' % p)
+           f.write('%schk=%s \n' %(p,chkname) )  
+           f.write('%snproc=4\n' % p)
+           f.write('%smem=4000Mb \n' % p)
            f.write('%s \n '  % route)
            f.write('  \n')
            f.write(' comment\n')
@@ -109,70 +109,6 @@ def writer(Zs,xyzs, filename2, route, charg, mult):
            f.write('----Link1--\n')
     return
 
-                       #Zs = parseZxyz(filename)[0]
-
-
-
-
-
-
-
-
-#def scancoIn2(filename,normd,n,gauss_inp,route,carg,mult):
-#    'filename: name of the file to read (log), normd : displacement norm \
-#      n = number of points , gauss_inp: name of the generated input, charge and multiplicity'
-#    normd = normd*1.889725989
-#    DC = parseDCUGD(filename)[0]
-#    UGD = parseDCUGD(filename)[1]
-#    DCn = DC / norm(DC)
-#    UGDn = UGD / norm(UGD)
-#    geom_CoIn_au = 1.889725989 * parsexyz(filename)[1]
-#    Zlist = parsexyz(filename)[0]
-#    esc = np.vdot(UGDn,DCn) 
-#    UGDT = UGDn - esc*D
-#    UGDTn = UGDT / norm(UGDT)
-#    #    UGDT = (UGD - DC) / norm( UGD - DC )
-#    alpha = (2 * 3.141592654) / n
-#    inpfile = open(gauss_inp,'w')
-#    p = '%'
-#    all_geoms=[]
-#    for i in range(n):
-#        chk = os.path.splitext(gauss_inp)[0]
-#        inpfile.write('%smem=4000Mb  \n' % p)
-#        inpfile.write('%snproc=2 \n' % p)
-#        inpfile.write('%schk=%s \n' % (p,chk))
-#        inpfile.write('%s \n' % route)
-#        inpfile.write('\n')
-#        inpfile.write('comment \n')
-#        inpfile.write('\n')
-#        inpfile.write('%s %s \n' %(carg,mult))
-##        geom_p = ( geom_CoIn_au + ( cos(alpha*(i+1))*normd*DCn + sin(alpha* (i+1) )*normd*UGDTn) ) * 0.529177249   
-#        geom_p = ( geom_CoIn_au +  DCn*normd*cos(alpha*(i+1)) + UGDTn*normd*sin(alpha*(i+1)) ) * 0.529177249
-#        geoml = geom_p.tolist()
-#        aa = zip(Zlist,geoml)
-#        aaa = []
-#        for j in aa:
-#            aaa.append((map(str,[j[0]]+j[1])))
-#        for k in aaa:
-#            inpfile.write('%s %s %s %s\n' % (k[0],k[1],k[2],k[3]))
-#        inpfile.write('\n')
-#        inpfile.write(' 0.5       0.5\n')
-#        inpfile.write('--Link1-- \n')
-#        all_geoms.extend(geoml)
-#    inpfile.close()
-#
-#    length=len(all_geoms)/n
-#    new_list = []
-#    m=0
-#    while m < len(all_geoms):
-#        new_list.append(all_geoms[m:m+length])
-#        m += length
-#    return new_list 
-
-
-
-# listofgeoms is a nested list which contains all the geometries of the scan (returned by the previous function)
-#
 #def workF(listofgeoms,filename,modF,atomF1,atomF2):
 ##    listofgeoms = scancoIn2(filename,normd,n,gauss_inp,route,carg,mult)
 #    geomCoIn_au = 1.889725989 * parsexyz(filename)[1]

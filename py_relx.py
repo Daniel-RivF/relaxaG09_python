@@ -3,18 +3,21 @@
 import tools_py_relx as tools
 import os.path
 
-name =  raw_input('Name of the .log file (including .log): ')
-normd = float(raw_input('Displacement norm:  '))
-n     = int(raw_input('Number of steps:  '))
-inp   = raw_input('name of the .com file (generated at output):  ')
-carg  = raw_input('charge of the molecule:  ')
+filename =  raw_input('Name of the .log file (including .log): ')
+step = float(raw_input('Displacement norm:  '))
+nsteps     = int(raw_input('Number of steps:  '))
+filename2   = raw_input('name of the .com file (generated at output):  ')
+charg  = raw_input('charge of the molecule:  ')
 mult  = raw_input('spin multiplicity:  ')
 route = raw_input('route section (including #p):  ')
 
+Zs =   tools.parseZxyz(filename)[0]
+xyzs = tools.scan(filename, step,nsteps)
+tools.writer(Zs,xyzs, filename2, route, charg, mult)
 
-tools.scancoIn2(name,normd,n,inp,route,carg,mult)
 
-if os.path.isfile(inp):
+
+if os.path.isfile(filename2):
     print 'File was generated'
 else:
     print 'Error: the .com file was not generated'
